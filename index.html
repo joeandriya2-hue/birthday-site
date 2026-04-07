@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Birthday 🎉</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&family=Orbitron:wght@500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            margin: 10;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ✨ CURSOR */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            font-size: 12px;
+            animation: spark 1s linear forwards;
+        }
+
+        @keyframes spark {
+            to {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+        }
+
+        /* 💖 HEART */
+        .heart {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* 🎆 FIREWORK */
+        .firework {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            from {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+
+        @keyframes explode {
+            from {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+
+
+
+        .section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 🎬 STORY ANIMATION */
+        /* SAFE ANIMATION */
+        .section {
+            transition: all 0.6s ease;
+        }
+
+        /* only animation, no hide */
+        .animate {
+            animation: fadeUp 0.7s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0.3;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* ACTIVE SECTION */
+        .section.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* 💬 MESSAGE ANIMATION */
+        /* CONTENT FIX */
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            width: 90%;
+        }
+
+        /* IMAGE */
+        .content img {
+            width: 700px;
+            border-radius: 20px;
+        }
+
+        /* MESSAGE BOX */
+        .msg {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 20px;
+            border-radius: 15px;
+
+            font-size: 20px;
+            font-weight: 600;
+
+            max-width: 250px;
+            /* 🔥 important */
+            min-width: 180px;
+            /* 🔥 prevent shrink */
+        }
+
+        /* MOBILE FIX */
+        @media(max-width:600px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .msg {
+                max-width: 90%;
+            }
+        }
+
+        /* PAGE 1 */
+        .page1 {
+            background: linear-gradient(270deg, #ff4e7a, #6a11cb, #ff9a9e);
+            background-size: 600% 600%;
+            animation: gradient 8s infinite;
+        }
+
+        @keyframes gradient {
+            50% {
+                background-position: 100%
+            }
+        }
+
+        .page1 h1 {
+            font-family: 'Pacifico';
+            font-size: 42px;
+        }
+
+        /* CONTENT */
+        .content {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .left {
+            flex-direction: row;
+        }
+
+        .right {
+            flex-direction: row-reverse;
+        }
+
+        .content img {
+            width: 400px;
+            border-radius: 30px;
+            animation: float 3s infinite;
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* MESSAGE */
+        .msg {
+            background: rgba(155, 86, 86, 0.65);
+            padding: 30px;
+            border-radius: 18px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* VIDEO */
+        video {
+            width: 350px;
+            border-radius: 15px;
+        }
+
+        /* GANG */
+        .member {
+            display: inline-block;
+            margin: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .member img {
+            width: 200px;
+            height: 300px;
+            /* 🔥 FIXED HEIGHT */
+            object-fit: cover;
+            /* 🔥 IMPORTANT (no stretch) */
+            border-radius: 20px;
+            box-shadow: 0 0 20px #ff4e7a;
+        }
+
+        #gang {
+            background: linear-gradient(135deg, #e6dddd, #db7272);
+        }
+
+        #gang h2 {
+            font-family: 'Orbitron';
+            font-size: 40px;
+            color: #0c0303;
+            /* 🔥 bright white */
+            text-shadow:
+                0 0 10px #000000,
+                0 0 20px #ff4e7a,
+                0 0 30px #ff4e7a;
+            margin-bottom: 20px;
+        }
+
+        /* BUTTON */
+        button {
+            padding: 12px 25px;
+            border: #ff4e7a;
+            border-radius: 30px;
+            background: white;
+            color: #bb1d45;
+        }
+
+        /* MOBILE */
+        @media(max-width:600px) {
+            .content {
+                flex-direction: column;
+            }
+        }
+
+        /* 🎮 QUIZ DESIGN */
+        .quiz {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .quiz h2 {
+            color: #ffffff;
+            font-size: 26px;
+            text-shadow: 0 0 10px #000;
+        }
+
+        /* INPUT BOX */
+        .quiz input {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            text-align: center;
+            width: 200px;
+        }
+
+        /* BUTTON */
+        .quiz button {
+            margin-top: 10px;
+            background: #ff4e7a;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 10px #ff4e7a;
+        }
+
+        /* 🎁 FINAL PAGE */
+        /* 🎁 FINAL PAGE */
+        #final {
+            background: linear-gradient(135deg, #000000, #434343);
+            flex-direction: column;
+        }
+
+        /* BOX */
+        .final-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+        }
+
+        /* IMAGE */
+        .final-img {
+            width: 400px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px #ff4e7a;
+            animation: zoomImg 3s infinite alternate;
+        }
+
+        @keyframes zoomImg {
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        /* TEXT */
+        #final h2 {
+            font-family: 'Pacifico';
+            font-size: 32px;
+            color: #ff4e7a;
+            text-shadow: 0 0 15px #ff4e7a;
+        }
+
+        #final p {
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="music" loop>
+        <source src="friendshipsong.mp4">
+    </audio>
+
+    <!-- PAGE1 -->
+    <div class="section page1">
+        <div>
+            <h1 id="typing"></h1>
+            <p>عيد ميلاد سعيد 🎉</p>
+            <p>السلام عليكم ✨</p>
+            <button onclick="go('img1')">Start 💖</button>
+        </div>
+    </div>
+
+    <!-- IMAGES -->
+    <div id="img1" class="section" onclick="nextImg()">
+        <div class="content left"><img src="joeafrin.jpeg">
+            <div class="msg">💖Pure bond, unbreakable connection...</div>
+        </div>
+    </div>
+    <div id="img2" class="section" onclick="nextImg()">
+        <div class="content right"><img src="photo3.jpeg">
+            <div class="msg">😎 "We weren’t just part of college life… <br>we were the best part of it..”</div>
+        </div>
+    </div>
+    <div id="img3" class="section" onclick="nextImg()">
+        <div class="content left"><img src="photo2.jpeg">
+            <div class="msg">🔥 “We didn’t realize it then, <br>but we were living our best moments...”</div>
+        </div>
+    </div>
+    <div id="img4" class="section" onclick="nextImg()">
+        <div class="content right"><img src="photo1.jpeg">
+            <div class="msg">✨ “Our laughter filled every corner of our college with life...”</div>
+        </div>
+    </div>
+    <div id="img5" class="section" onclick="nextImg()">
+        <div class="content left"><img src="pic5.png">
+            <div class="msg">❤️ No matter what, our moments are always fun-filled... <br>
+                Every second together is a happy memory...</div>
+        </div>
+    </div>
+    <div id="img6" class="section" onclick="nextImg()">
+        <div class="content right"><img src="pic6.png">
+            <div class="msg">🎉 Every college function reminds me of our beautiful togetherness... <br>
+                In every college celebration, I find memories of us...</div>
+        </div>
+    </div>
+    <div id="img7" class="section" onclick="nextImg()">
+        <div class="content left"><img src="pic8.png">
+            <div class="msg">🤝 We protect, we stay
+                Always by your side...
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="img8" class="section" onclick="nextImg()">
+        <div class="content right"><img src="pic9.png">
+            <div class="msg">💫 These memories will stay in my heart forever... <br>
+                Our memories are not just moments, they are lifelong love..</div>
+        </div>
+    </div>
+    <div id="img9" class="section" onclick="nextImg()">
+        <div class="content left"><img src="pic7.png">
+            <div class="msg">💭 Life changed, memories didn’t.” <br> No matter how life moves on...my heart goes back to
+                those memories.</div>
+        </div>
+    </div>
+
+    <!-- VIDEOS -->
+    <!-- VIDEOS -->
+
+    <div id="v1" class="section" onclick="nextVid()">
+        <div class="content left">
+            <video src="vedio1.mp4" autoplay muted loop></video>
+            <div class="msg">💖 Those unexpected moments will live in my heart forever...</div>
+        </div>
+    </div> <br><br><br><br>
+
+    <div id="v2" class="section" onclick="nextVid()">
+        <div class="content right">
+            <video src="vedio2.mp4" autoplay muted loop></video>
+            <div class="msg">😎 We laughed the most, and those moments meant everything...</div>
+        </div>
+    </div>
+
+    <div id="v3" class="section">
+        <div class="content left">
+            <video src="vedio3.mp4" autoplay muted loop></video>
+            <div class="msg">🔥 Cringe moments today, unforgettable memories tomorrow...</div>
+        </div>
+        <br>
+        <button onclick="go('gang')">Tap Here 💖</button>
+    </div>
+    <!-- GANG -->
+    <div id="gang" class="section">
+        <div>
+            <h2>Our Gang 💖</h2>
+            <div class="member"><img src="joe.jpeg"><br>Joe</div>
+            <div class="member"><img src="sreya2.jpeg"><br>Sreya</div>
+            <div class="member"><img src="om.png"><br>OM</div>
+            <div class="member"><img src="sabari.png"><br>sabari</div>
+            <br>
+            <button onclick="go('q1')">Next</button>
+        </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="q1" class="section quiz">
+        <div>
+            <h2>Sreya va sabari character vachi kalaipaan athu enna?</h2>
+            <input id="a1"><br>
+            <button onclick="c1()">Next</button>
+        </div>
+    </div>
+
+    <div id="q2" class="section quiz">
+        <div>
+            <h2>namba gang ooda captain?</h2>
+            <input id="a2"><br>
+            <button onclick="c2()">Next</button>
+        </div>
+    </div>
+
+    <div id="q3" class="section quiz">
+        <div>
+            <h2>sugar cut ah namba gang la aarmbichathu yaaraee?</h2>
+            <input id="a3"><br>
+            <button onclick="c3()">Next</button>
+        </div>
+    </div>
+
+    <div id="q4" class="section quiz">
+        <div>
+            <h2>namba gang ku recent ahh vacha name??</h2>
+            <input id="a4"><br>
+            <button onclick="c4()">Finish</button>
+        </div>
+    </div>
+
+    <!-- FINAL -->
+    <div id="final" class="section">
+        <div class="final-box">
+
+            <img src="picgang.png" class="final-img">
+
+            <h2>🎂 Once Again Happyy Bday Afrineyyy 💖 <br>
+                Epovum happie ah iru ✨ <br>
+                Un kanavugal ellam niraiveranum ❤️</h2>
+
+            <p>Wishes by our gang 💯 <br> Besties Forever 🔥</p>
+
+        </div>
+    </div>
+
+    <script>
+
+
+        /* CURSOR */
+        document.addEventListener("mousemove", e => {
+            let s = document.createElement("div");
+            s.className = "sparkle";
+            s.innerHTML = "✨";
+            s.style.left = e.clientX + "px";
+            s.style.top = e.clientY + "px";
+            document.body.appendChild(s);
+            setTimeout(() => s.remove(), 1000);
+        });
+
+        /* HEART */
+        setInterval(() => {
+            let h = document.createElement("div");
+            h.className = "heart";
+            h.innerHTML = "💖";
+            h.style.left = Math.random() * 100 + "%";
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }, 300);
+
+        /* TYPING */
+        let t = "✨ Happiest Bday Afrineyyy ✨";
+        let k = 0;
+        function type() {
+            if (k < t.length) {
+                typing.innerHTML += t[k++];
+                setTimeout(type, 80);
+            }
+        }
+        function firework() {
+
+            for (let i = 0; i < 100; i++) {   // more particles
+                let f = document.createElement("div");
+                f.className = "firework";
+
+                // random spread
+                let x = (Math.random() * 500 - 250) + "px";
+                let y = (Math.random() * 500 - 250) + "px";
+
+                f.style.setProperty("--x", x);
+                f.style.setProperty("--y", y);
+
+                // random color
+                f.style.background = ["#ff4e7a", "#ffd700", "#00ffff", "#ffffff"][Math.floor(Math.random() * 4)];
+
+                document.body.appendChild(f);
+
+                setTimeout(() => f.remove(), 1000);
+            }
+        }
+
+        type();
+
+        /* FLOW */
+        let imgPages = ["img1", "img2", "img3", "img4", "img5", "img6", "img7", "img8", "img9"];
+        let vidPages = ["v1", "v2", "v3"];
+        let i = 0, j = 0;
+        let music = document.getElementById("music");
+        let started = false;
+
+        function go(id) {
+            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+            if (!started) { music.play().catch(() => { }); started = true; }
+        }
+
+        function nextImg() {
+            if (i < imgPages.length - 1) { i++; go(imgPages[i]); }
+            else { go("v1"); }
+        }
+
+        function nextVid() {
+            if (j < vidPages.length - 1) { j++; go(vidPages[j]); }
+        }
+
+        /* SWIPE */
+        let startX = 0;
+        document.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+        document.addEventListener("touchend", e => {
+            let endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) nextImg();
+            if (endX - startX > 50 && i > 0) { i--; go(imgPages[i]); }
+        });
+
+
+
+        function c1() {
+            if (a1.value.toLowerCase() == "robert") {
+                go("q2");
+            } else {
+                alert("Ohhh come on afrin u can do it... 😜");
+            }
+        }
+
+        function c2() {
+            if (a2.value.toLowerCase() == "joe") {
+                go("q3");
+            } else {
+                alert("nee thappahh solluva nu ethir paakala");
+            }
+        }
+
+        function c3() {
+            if (a3.value.toLowerCase() == "sreya") {
+                go("q4");
+            } else {
+                alert("eppudi nee markalam!!");
+            }
+        }
+
+        function c4() {
+            if (a4.value.toLowerCase() == "techcivil") {
+                go("final");
+            } else {
+                alert("❌ ore asingama pochu kumaraee");
+            }
+        }
+        function finalHearts() {
+            for (let i = 0; i < 30; i++) {
+                let h = document.createElement("div");
+                h.className = "heart";
+                h.innerHTML = "💖";
+                h.style.left = Math.random() * 100 + "%";
+                h.style.fontSize = "25px";
+                h.style.animationDuration = "2s";
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 3000);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
