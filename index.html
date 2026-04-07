@@ -574,9 +574,14 @@
         let started = false;
 
         function go(id) {
-            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-            if (!started) { music.play().catch(() => { }); started = true; }
-        }
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+
+    if (!started) {
+        music.muted = false;   // 🔥 இதை ADD பண்ணு
+        music.play().catch(() => { });
+        started = true;
+    }
+}
 
         function nextImg() {
             if (i < imgPages.length - 1) { i++; go(imgPages[i]); }
