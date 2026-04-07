@@ -47,18 +47,17 @@
             }
         }
 
-        /* 🎆 FIREWORK */
-        .firework {
+        /* 🎆 FIREWORK PARTICLE */
+        .fire {
             position: fixed;
-            left: 50%;
-            top: 50%;
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            animation: explode 1s ease-out forwards;
+            pointer-events: none;
+            animation: fireMove 1s linear forwards;
         }
 
-        @keyframes explode {
+        @keyframes fireMove {
             from {
                 transform: translate(0, 0);
                 opacity: 1;
@@ -70,19 +69,23 @@
             }
         }
 
-        @keyframes explode {
+    
+      .circle {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatCircle linear infinite;
+        }
+
+        @keyframes floatCircle {
             from {
-                transform: translate(0, 0);
-                opacity: 1;
+                transform: translateY(100vh);
             }
 
             to {
-                transform: translate(var(--x), var(--y));
-                opacity: 0;
+                transform: translateY(-10vh);
             }
         }
-
-
 
         .section {
             height: 100vh;
@@ -133,17 +136,17 @@
 
         /* IMAGE */
         .content img {
-            width: 700px;
+            width: 2000px;
             border-radius: 20px;
         }
 
         /* MESSAGE BOX */
         .msg {
             background: rgba(0, 0, 0, 0.75);
-            padding: 20px;
+            padding: 30px;
             border-radius: 15px;
 
-            font-size: 20px;
+            font-size: 30px;
             font-weight: 600;
 
             max-width: 250px;
@@ -355,8 +358,8 @@
 <body>
 
     <audio id="music" loop>
-    <source src="friendshipsong.mp3">
-</audio>
+        <source src="friendshipsong.mp3">
+    </audio>
 
     <!-- PAGE1 -->
     <div class="section page1">
@@ -402,14 +405,14 @@
         </div>
     </div>
     <div id="img7" class="section" onclick="nextImg()">
-    <div class="content left"><img src="pic8.jpg">
-        <div class="msg">🤝 We protect, we stay
-            Always by your side...
+        <div class="content left"><img src="pic8.jpg">
+            <div class="msg">🤝 We protect, we stay
+                Always by your side...
+            </div>
         </div>
     </div>
-</div>
-    
-    
+
+
     <div id="img8" class="section" onclick="nextImg()">
         <div class="content right"><img src="pic9.jpg">
             <div class="msg">💫 These memories will stay in my heart forever... <br>
@@ -542,27 +545,55 @@
                 setTimeout(type, 80);
             }
         }
-        function firework() {
+        /* 🎆 AUTO FIREWORKS */
+        setInterval(() => {
+            let centerX = Math.random() * window.innerWidth;
+            let centerY = Math.random() * window.innerHeight / 2;
 
-            for (let i = 0; i < 100; i++) {   // more particles
+            for (let i = 0; i < 40; i++) {
                 let f = document.createElement("div");
-                f.className = "firework";
+                f.className = "fire";
 
-                // random spread
-                let x = (Math.random() * 500 - 250) + "px";
-                let y = (Math.random() * 500 - 250) + "px";
+                let x = (Math.random() * 200 - 100) + "px";
+                let y = (Math.random() * 200 - 100) + "px";
+
+                f.style.left = centerX + "px";
+                f.style.top = centerY + "px";
 
                 f.style.setProperty("--x", x);
                 f.style.setProperty("--y", y);
 
-                // random color
+                // random colors 🔥
                 f.style.background = ["#ff4e7a", "#ffd700", "#00ffff", "#ffffff"][Math.floor(Math.random() * 4)];
 
                 document.body.appendChild(f);
 
                 setTimeout(() => f.remove(), 1000);
             }
-        }
+
+        }, 1500); // speed control
+
+        /* 🎈 FLOATING BACKGROUND CIRCLES */
+        setInterval(() => {
+            let c = document.createElement("div");
+            c.className = "circle";
+
+            let size = Math.random() * 40 + 10;
+
+            c.style.width = size + "px";
+            c.style.height = size + "px";
+
+            c.style.left = Math.random() * 100 + "%";
+
+            c.style.background = ["#ff4e7a", "#ffd700", "#00ffff", "#ffffff"][Math.floor(Math.random() * 4)];
+
+            c.style.animationDuration = (Math.random() * 5 + 5) + "s";
+
+            document.body.appendChild(c);
+
+            setTimeout(() => c.remove(), 10000);
+
+        }, 300);
 
         type();
 
@@ -574,14 +605,14 @@
         let started = false;
 
         function go(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 
-    if (!started) {
-        music.muted = false;   // 🔥 இதை ADD பண்ணு
-        music.play().catch(() => { });
-        started = true;
-    }
-}
+            if (!started) {
+                music.muted = false;   // 🔥 இதை ADD பண்ணு
+                music.play().catch(() => { });
+                started = true;
+            }
+        }
 
         function nextImg() {
             if (i < imgPages.length - 1) { i++; go(imgPages[i]); }
